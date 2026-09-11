@@ -67,3 +67,10 @@ textarea { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.12) transpa
   .ambient-one { right: -10rem; top: 8rem; }
   .ambient-two { left: -8rem; }
 }
+
+.text-gradient { background: linear-gradient(100deg, #eafcff 10%, #6be6ff 48%, #b9a2ff 92%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.field-label { display: block; margin-bottom: .5rem; color: #94a3b8; font-size: 10px; font-weight: 600; letter-spacing: .02em; }
+.field-input { width: 100%; border: 1px solid rgba(255,255,255,.09); border-radius: .75rem; background: rgba(255,255,255,.035); color: #f8fafc; padding: .75rem .8rem; outline: none; font-size: 12px; transition: border-color .16s ease, background-color .16s ease, box-shadow .16s ease; }
+.field-input::placeholder { color: #475569; }
+.field-input:focus { border-color: rgba(53,214,255,.5); background: rgba(53,214,255,.05); box-shadow: 0 0 0 3px rgba(53,214,255,.08); }
+.field-input option { background: #10141d; color: #f8fafc; }

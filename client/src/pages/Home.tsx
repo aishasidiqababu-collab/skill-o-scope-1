@@ -113,7 +113,64 @@ function AppLogo() {
   );
 }
 
+type StudentProfile = {
+  name: string;
+  email: string;
+  degree: string;
+  branch: string;
+  graduationYear: string;
+  cgpa: string;
+  targetRole: string;
+};
+
+function ProfileSetup({ onComplete }: { onComplete: (profile: StudentProfile) => void }) {
+  const [form, setForm] = useState<StudentProfile>({
+    name: "",
+    email: "",
+    degree: "B.Tech",
+    branch: "Computer Science",
+    graduationYear: "2026",
+    cgpa: "",
+    targetRole: "Software Engineer",
+  });
+
+  const update = (key: keyof StudentProfile, value: string) => setForm((current) => ({ ...current, [key]: value }));
+
+  return (
+    <div className="min-h-screen overflow-hidden bg-[#080a0f] text-slate-100">
+      <div className="ambient ambient-one" />
+      <div className="ambient ambient-two" />
+      <div className="relative mx-auto flex min-h-screen max-w-6xl items-center px-5 py-10 md:px-8">
+        <div className="grid w-full gap-10 lg:grid-cols-[.85fr_1.15fr] lg:items-center">
+          <div className="max-w-lg">
+            <AppLogo />
+            <div className="mt-14 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-300"><span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_9px_#35d6ff]" /> Personal setup</div>
+            <h1 className="mt-4 text-[42px] font-semibold leading-[1.05] tracking-[-0.07em] text-white md:text-[58px]">Start with your <span className="text-gradient">real profile.</span></h1>
+            <p className="mt-5 max-w-md text-[14px] leading-relaxed text-slate-500">Enter your details once and Skill-O-Scope will tailor readiness, eligibility, skill gaps and career recommendations around you.</p>
+            <div className="mt-8 grid max-w-md grid-cols-3 gap-2"><div className="rounded-xl border border-white/[0.07] bg-white/[0.03] p-3"><UserRound className="h-4 w-4 text-cyan-300" /><div className="mt-3 text-[10px] text-slate-500">Your identity</div></div><div className="rounded-xl border border-white/[0.07] bg-white/[0.03] p-3"><GraduationCap className="h-4 w-4 text-violet-300" /><div className="mt-3 text-[10px] text-slate-500">Academic profile</div></div><div className="rounded-xl border border-white/[0.07] bg-white/[0.03] p-3"><Target className="h-4 w-4 text-amber-300" /><div className="mt-3 text-[10px] text-slate-500">Career goal</div></div></div>
+          </div>
+          <form onSubmit={(event) => { event.preventDefault(); onComplete(form); }} className="glass-card relative rounded-3xl p-5 shadow-[0_25px_80px_rgba(0,0,0,.35)] md:p-7">
+            <div className="mb-7 flex items-start justify-between"><div><div className="text-[17px] font-semibold tracking-[-0.03em] text-white">Tell us about yourself</div><div className="mt-1 text-[11px] text-slate-600">Required fields help us calculate your baseline.</div></div><div className="rounded-full border border-cyan-300/20 bg-cyan-300/10 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-cyan-200">Step 1 of 1</div></div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <label className="sm:col-span-2"><span className="field-label">Full name</span><input required value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Enter your full name" className="field-input" /></label>
+              <label className="sm:col-span-2"><span className="field-label">Email address</span><input required type="email" value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="you@college.edu" className="field-input" /></label>
+              <label><span className="field-label">Degree</span><select value={form.degree} onChange={(e) => update("degree", e.target.value)} className="field-input"><option>B.Tech</option><option>B.E.</option><option>BCA</option><option>M.Tech</option><option>MCA</option><option>Other</option></select></label>
+              <label><span className="field-label">Branch / stream</span><select value={form.branch} onChange={(e) => update("branch", e.target.value)} className="field-input"><option>Computer Science</option><option>Information Technology</option><option>Electronics & Communication</option><option>Electrical Engineering</option><option>Mechanical Engineering</option><option>Civil Engineering</option><option>Other</option></select></label>
+              <label><span className="field-label">Graduation year</span><select value={form.graduationYear} onChange={(e) => update("graduationYear", e.target.value)} className="field-input"><option>2025</option><option>2026</option><option>2027</option><option>2028</option><option>2029</option></select></label>
+              <label><span className="field-label">Current CGPA <span className="text-slate-600">(optional)</span></span><input min="0" max="10" step="0.01" type="number" value={form.cgpa} onChange={(e) => update("cgpa", e.target.value)} placeholder="e.g. 8.4" className="field-input" /></label>
+              <label className="sm:col-span-2"><span className="field-label">Target career / role</span><select value={form.targetRole} onChange={(e) => update("targetRole", e.target.value)} className="field-input"><option>Software Engineer</option><option>Full Stack Developer</option><option>Frontend Developer</option><option>Backend Developer</option><option>Data Analyst</option><option>Data Scientist</option><option>AI/ML Engineer</option><option>Cybersecurity Engineer</option><option>Cloud / DevOps Engineer</option><option>Product Manager</option></select></label>
+            </div>
+            <button type="submit" className="mt-7 flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3.5 text-[12px] font-semibold text-slate-950 shadow-[0_10px_25px_rgba(255,255,255,.08)] hover:bg-cyan-50">Create my dashboard <ArrowUpRight className="h-4 w-4" /></button>
+            <div className="mt-3 text-center text-[10px] text-slate-600">You can update these details later from your profile settings.</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
+  const [profile, setProfile] = useState<StudentProfile | null>(null);
   const [activeNav, setActiveNav] = useState("Overview");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [copilotOpen, setCopilotOpen] = useState(false);
@@ -132,6 +189,7 @@ export default function Home() {
     { score: 86, weight: 5 },
   ]);
   const trend = useMemo(() => [58, 62, 64, 61, 68, 71, readiness], [readiness]);
+  if (!profile) return <ProfileSetup onComplete={setProfile} />;
 
   const sendMessage = () => {
     const clean = message.trim();
@@ -170,7 +228,7 @@ export default function Home() {
           </div>
           <button className="flex w-full items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-2.5 text-left hover:bg-white/[0.06]">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-300 to-violet-400 text-[11px] font-bold text-slate-950">AM</div>
-            <div className="min-w-0 flex-1"><div className="truncate text-[12px] font-medium text-white">Your profile</div><div className="truncate text-[10px] text-slate-600">Student workspace</div></div>
+            <div className="min-w-0 flex-1"><div className="truncate text-[12px] font-medium text-white">{profile.name}</div><div className="truncate text-[10px] text-slate-600">{profile.branch} · Class of {profile.graduationYear}</div></div>
             <MoreHorizontal className="h-4 w-4 text-slate-600" />
           </button>
         </div>
@@ -178,7 +236,7 @@ export default function Home() {
 
       <div className="relative min-h-screen lg:pl-[258px]">
         <header className="sticky top-0 z-30 flex h-[72px] items-center justify-between border-b border-white/[0.07] bg-[#080a0f]/80 px-5 backdrop-blur-xl md:px-8">
-          <div className="flex items-center gap-3"><button onClick={() => setMobileOpen(true)} className="rounded-xl border border-white/[0.08] p-2 text-slate-400 lg:hidden"><Menu className="h-4 w-4" /></button><div><div className="text-[11px] font-medium text-slate-500">Monday, 14 October 2026</div><h1 className="mt-0.5 text-[17px] font-semibold tracking-[-0.03em] text-white">Welcome to Skill-O-Scope <span className="text-cyan-300">✦</span></h1></div></div>
+          <div className="flex items-center gap-3"><button onClick={() => setMobileOpen(true)} className="rounded-xl border border-white/[0.08] p-2 text-slate-400 lg:hidden"><Menu className="h-4 w-4" /></button><div><div className="text-[11px] font-medium text-slate-500">Monday, 14 October 2026</div><h1 className="mt-0.5 text-[17px] font-semibold tracking-[-0.03em] text-white">Good morning, {profile.name.split(" ")[0] || "there"} <span className="text-cyan-300">✦</span></h1></div></div>
           <div className="flex items-center gap-2.5"><button className="hidden items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.025] px-3 py-2 text-[11px] text-slate-500 transition hover:border-white/15 hover:text-slate-200 md:flex"><Search className="h-3.5 w-3.5" /> Search <kbd className="ml-2 rounded border border-white/10 px-1.5 py-0.5 text-[9px] text-slate-600">⌘ K</kbd></button><button className="relative rounded-xl border border-white/[0.08] bg-white/[0.025] p-2.5 text-slate-500 hover:text-white"><Bell className="h-4 w-4" /><span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_8px_#35d6ff]" /></button><div className="hidden h-8 w-px bg-white/[0.08] md:block" /><div className="hidden items-center gap-2 md:flex"><div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-300 to-violet-400 text-[10px] font-bold text-slate-950">AM</div><ChevronRight className="h-3.5 w-3.5 rotate-90 text-slate-600" /></div></div>
         </header>
 
