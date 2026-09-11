@@ -170,7 +170,7 @@ export default function Home() {
           </div>
           <button className="flex w-full items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-2.5 text-left hover:bg-white/[0.06]">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-300 to-violet-400 text-[11px] font-bold text-slate-950">AM</div>
-            <div className="min-w-0 flex-1"><div className="truncate text-[12px] font-medium text-white">Aarav Mehta</div><div className="truncate text-[10px] text-slate-600">CSE · Class of 2026</div></div>
+            <div className="min-w-0 flex-1"><div className="truncate text-[12px] font-medium text-white">Your profile</div><div className="truncate text-[10px] text-slate-600">Student workspace</div></div>
             <MoreHorizontal className="h-4 w-4 text-slate-600" />
           </button>
         </div>
@@ -178,7 +178,7 @@ export default function Home() {
 
       <div className="relative min-h-screen lg:pl-[258px]">
         <header className="sticky top-0 z-30 flex h-[72px] items-center justify-between border-b border-white/[0.07] bg-[#080a0f]/80 px-5 backdrop-blur-xl md:px-8">
-          <div className="flex items-center gap-3"><button onClick={() => setMobileOpen(true)} className="rounded-xl border border-white/[0.08] p-2 text-slate-400 lg:hidden"><Menu className="h-4 w-4" /></button><div><div className="text-[11px] font-medium text-slate-500">Monday, 14 October 2026</div><h1 className="mt-0.5 text-[17px] font-semibold tracking-[-0.03em] text-white">Good morning, Aarav <span className="text-cyan-300">✦</span></h1></div></div>
+          <div className="flex items-center gap-3"><button onClick={() => setMobileOpen(true)} className="rounded-xl border border-white/[0.08] p-2 text-slate-400 lg:hidden"><Menu className="h-4 w-4" /></button><div><div className="text-[11px] font-medium text-slate-500">Monday, 14 October 2026</div><h1 className="mt-0.5 text-[17px] font-semibold tracking-[-0.03em] text-white">Welcome to Skill-O-Scope <span className="text-cyan-300">✦</span></h1></div></div>
           <div className="flex items-center gap-2.5"><button className="hidden items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.025] px-3 py-2 text-[11px] text-slate-500 transition hover:border-white/15 hover:text-slate-200 md:flex"><Search className="h-3.5 w-3.5" /> Search <kbd className="ml-2 rounded border border-white/10 px-1.5 py-0.5 text-[9px] text-slate-600">⌘ K</kbd></button><button className="relative rounded-xl border border-white/[0.08] bg-white/[0.025] p-2.5 text-slate-500 hover:text-white"><Bell className="h-4 w-4" /><span className="absolute right-2 top-2 h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_8px_#35d6ff]" /></button><div className="hidden h-8 w-px bg-white/[0.08] md:block" /><div className="hidden items-center gap-2 md:flex"><div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-cyan-300 to-violet-400 text-[10px] font-bold text-slate-950">AM</div><ChevronRight className="h-3.5 w-3.5 rotate-90 text-slate-600" /></div></div>
         </header>
 
